@@ -1,0 +1,21 @@
+site_name: how2.red
+site_url: https://how2.red
+
+theme:
+  name: material
+  palette:
+    primary: red
+    accent: pink
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Recon: recon/index.md
+  - Exploitation: exploitation/index.md
+  - Post-Exploitation: post-exploitation/index.md
+  - Tips & Tricks: tips/index.md
