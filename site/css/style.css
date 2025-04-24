@@ -1,0 +1,60 @@
+/* Move the logo to the right side */
+.md-header__button.md-logo {
+  margin-left: auto;
+  order: 2;
+}
+
+/* Optional: Keep the nav title (site name) left-aligned */
+.md-header__title {
+  order: 1;
+}
+
+/* Align homepage buttons inline and center them */
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* allows responsiveness on small screens */
+  margin-top: 1.5rem;
+}
+
+.button-row a.md-button {
+  min-width: 150px;
+  text-align: center;
+}
+
+
+/* Font&Size for Title and Tagline */
+.techy-title {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 3rem; /* approx. double normal header size */
+  color: #f44336;
+  margin-top: 1rem;
+}
+
+.techy-tagline {
+  font-family: 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  color: #f44336; /* red shade */
+  margin-top: 1rem;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.typing {
+  font-family: 'Share Tech Mono', monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #f44336;
+  width: 0;
+  animation: typing 4s steps(40, end) forwards;
+}
+

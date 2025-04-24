@@ -5,14 +5,12 @@ hide:
   - toc
 ---
 
-<div style="text-align: right; padding-right: 2rem;">
-  <img src="images/How2_Logo.png" alt="How2Red Logo" width="250" />
-</div>
-
-
 <div align="center">
+  <img src="images/How2_Logo.png" alt="How2Red Logo" width="250" />
+
   <h1 class="techy-title">Welcome to How2Red</h1>
-  <p class="techy-tagline">TRY. FAIL. LEARN. TRY AGAIN. GET BETTER.</p>
+
+  <p class="techy-tagline">Try. Fail. Learn. Try Again. Get Better.</p>
 
 <div class="button-row">
 
