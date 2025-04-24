@@ -23,6 +23,13 @@
   text-align: center;
 }
 
+/* Logo Adjustments */
+.homepage-logo {
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* or whatever gives enough space */
+}
+
+
 
 /* Font&Size for Title and Tagline */
 .techy-title {
@@ -31,7 +38,7 @@
   font-weight: bold;
   font-size: 3rem; /* approx. double normal header size */
   color: #f44336;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 .techy-tagline {
