@@ -31,7 +31,7 @@
   font-weight: bold;
   font-size: 3rem; /* approx. double normal header size */
   color: #f44336;
-  margin-top: 1rem;
+  margin-top: 3.5rem;
 }
 
 .techy-tagline {
@@ -43,18 +43,3 @@
   color: #f44336; /* red shade */
   margin-top: 1rem;
 }
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-.typing {
-  font-family: 'Share Tech Mono', monospace;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #f44336;
-  width: 0;
-  animation: typing 4s steps(40, end) forwards;
-}
-
