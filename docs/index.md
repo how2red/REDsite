@@ -1,3 +1,31 @@
+---
+title: Welcome
+hide:
+  - navigation
+  - toc
+---
+
+<div style="text-align: right; padding-right: 2rem;">
+  <img src="images/How2_Logo.png" alt="How2Red Logo" width="250" />
+</div>
+
+
+<div align="center">
+  <h1 class="techy-title">Welcome to How2Red</h1>
+  <p class="techy-tagline">TRY. FAIL. LEARN. TRY AGAIN. GET BETTER.</p>
+
+<div class="button-row">
+
+<a href="Windows/" class="md-button md-button">Windows TTPs</a>
+<a href="Linux/" class="md-button">Linux TTPs</a>
+<a href="Test/" class="md-button">Just a Test</a>
+
+</div>
+
+</div>
+
+
+
 # Welcome to MkDocs
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
