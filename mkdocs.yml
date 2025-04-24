@@ -3,6 +3,8 @@ site_name: How2Red
 site_url: https://how2.red
 copyright:  © 2025 | @How2Red
 
+docs_dir: vault
+
 theme:
   name: material
   palette:
@@ -33,10 +35,10 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Enumeration: Enumeration/index.md
-  - Lateral Movement: Lateral_Movement/index.md
-  - Privilege Escalation: Privilege_Escalation/index.md
-  - Tips & Tricks: tips/index.md
+#  - Enumeration: Enumeration/index.md
+#  - Lateral Movement: Lateral_Movement/index.md
+#  - Privilege Escalation: Privilege_Escalation/index.md
+#  - Tips & Tricks: tips/index.md
 
 extra:
   generator: false
