@@ -37,3 +37,13 @@ nav:
   - Lateral Movement: Lateral_Movement/index.md
   - Privilege Escalation: Privilege_Escalation/index.md
   - Tips & Tricks: tips/index.md
+
+extra:
+  generator: false
+
+plugins:
+  - search
+
+# Ensure CNAME is copied during builds
+extra_files:
+  - CNAME
