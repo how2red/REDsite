@@ -15,9 +15,9 @@ hide:
 
 <div class="button-row">
 
-<a href="Windows/" class="md-button md-button">Windows TTPs</a>
-<a href="Linux/" class="md-button">Linux TTPs</a>
-<a href="Test/" class="md-button">Just a Test</a>
+<a href="vault/Windows/" class="md-button md-button">Windows TTPs</a>
+<a href="vault/Linux/" class="md-button">Linux TTPs</a>
+<a href="vault/Test/" class="md-button">Just a Test</a>
 
 </div>
 
