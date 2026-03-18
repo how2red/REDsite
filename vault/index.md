@@ -11,15 +11,16 @@ hide:
 
   <h1 class="techy-title">Welcome to How2Red</h1>
 
-  <p class="techy-tagline">Try. Fail. Learn. Try Again. Get Better.</p>
+  <p class="techy-tagline">&#128204; Notes from the field.</p>
 
 <div class="button-row">
 
 <a href="Windows/" class="md-button md-button">Windows TTPs</a>
 <a href="Linux/" class="md-button">Linux TTPs</a>
-<a href="Test/" class="md-button">Just a Test</a>
+<a href="Test/" class="md-button">Writeups</a>
 
 </div>
 
 </div>
+
 
