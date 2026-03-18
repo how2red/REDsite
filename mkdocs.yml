@@ -26,6 +26,7 @@ theme:
     - navigation.instant
     - navigation.sections
     - navigation.expand
+    - navigation.indexes
     - toc.integrate
     - content.code.copy
   logo: images/How2_Logo.png
@@ -35,10 +36,17 @@ extra_css:
 
 nav:
   - Home: index.md
-#  - Enumeration: Enumeration/index.md
-#  - Lateral Movement: Lateral_Movement/index.md
-#  - Privilege Escalation: Privilege_Escalation/index.md
-#  - Tips & Tricks: tips/index.md
+  - Windows:
+      - Windows/index.md
+      - Active Directory:
+          - Windows/Active Directory/index.md
+          - DCSync: Windows/Active Directory/DCSync/index.md
+          - DCSync Backdoor: Windows/Active Directory/DCSync Backdoor/index.md
+      - Privilege Escalation: Windows/Privilege Escalation/index.md
+  - Linux:
+      - Linux/index.md
+  - Test:
+      - Test/index.md
 
 extra:
   generator: false
@@ -49,3 +57,4 @@ plugins:
 # Ensure CNAME is copied during builds
 extra_files:
   - CNAME
+
