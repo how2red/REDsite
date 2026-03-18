@@ -1,5 +1,7 @@
-# Test Section
+# Writeups
 
-This page is for experiments, drafts, or sandbox content.
+Walkthroughs, machine notes, and longer-form offensive security writeups.
 
-📦 *Feel free to break things here.*
+Current entries:
+
+- [CozyHosting](./CozyHosting/)

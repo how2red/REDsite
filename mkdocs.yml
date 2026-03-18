@@ -45,14 +45,16 @@ nav:
       - Privilege Escalation: Windows/Privilege Escalation/index.md
   - Linux:
       - Linux/index.md
-  - Test:
+  - Writeups:
       - Test/index.md
+      - CozyHosting: Test/CozyHosting/index.md
 
 extra:
   generator: false
 
 plugins:
   - search
+
 
 
 
