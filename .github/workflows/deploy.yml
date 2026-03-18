@@ -35,6 +35,9 @@ jobs:
       - name: Build site
         run: python -m mkdocs build --strict
 
+      - name: Copy CNAME
+        run: cp CNAME site/CNAME
+
       - name: Set up Pages
         uses: actions/configure-pages@v5
 
@@ -53,3 +56,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+

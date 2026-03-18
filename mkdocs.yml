@@ -54,7 +54,5 @@ extra:
 plugins:
   - search
 
-# Ensure CNAME is copied during builds
-extra_files:
-  - CNAME
+
 
