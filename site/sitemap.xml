@@ -2,22 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://how2.red/</loc>
-         <lastmod>2025-04-24</lastmod>
+         <lastmod>2026-03-18</lastmod>
     </url>
     <url>
          <loc>https://how2.red/Linux/</loc>
-         <lastmod>2025-04-24</lastmod>
+         <lastmod>2026-03-18</lastmod>
     </url>
     <url>
          <loc>https://how2.red/Test/</loc>
-         <lastmod>2025-04-24</lastmod>
+         <lastmod>2026-03-18</lastmod>
     </url>
     <url>
          <loc>https://how2.red/Windows/</loc>
-         <lastmod>2025-04-24</lastmod>
+         <lastmod>2026-03-18</lastmod>
     </url>
     <url>
-         <loc>https://how2.red/Windows/Active%20Directory/DcSync/</loc>
-         <lastmod>2025-04-24</lastmod>
+         <loc>https://how2.red/Windows/Active%20Directory/</loc>
+         <lastmod>2026-03-18</lastmod>
+    </url>
+    <url>
+         <loc>https://how2.red/Windows/Active%20Directory/DCSync/</loc>
+         <lastmod>2026-03-18</lastmod>
+    </url>
+    <url>
+         <loc>https://how2.red/Windows/Active%20Directory/DCSync%20Backdoor/</loc>
+         <lastmod>2026-03-18</lastmod>
+    </url>
+    <url>
+         <loc>https://how2.red/Windows/Privilege%20Escalation/</loc>
+         <lastmod>2026-03-18</lastmod>
     </url>
 </urlset>

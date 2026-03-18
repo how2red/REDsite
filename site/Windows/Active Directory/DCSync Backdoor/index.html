@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://how2.red/Windows/Active%20Directory/DCSync/">
+        <link rel="canonical" href="https://how2.red/Windows/Active%20Directory/DCSync%20Backdoor/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../DCSync/">
       
       
-        <link rel="next" href="../DCSync%20Backdoor/">
+        <link rel="next" href="../../Privilege%20Escalation/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>DCSync - How2Red</title>
+        <title>DCSync Backdoor - How2Red</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-dcsync-and-how-does-it-work" class="md-skip">
+        <a href="#spectreops-dcsync-backdoor" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DCSync
+              DCSync Backdoor
             
           </span>
         </div>
@@ -403,6 +403,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../DCSync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DCSync
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -420,7 +448,7 @@
   <span class="md-ellipsis">
     
   
-    DCSync
+    DCSync Backdoor
   
 
     
@@ -438,7 +466,7 @@
   <span class="md-ellipsis">
     
   
-    DCSync
+    DCSync Backdoor
   
 
     
@@ -462,10 +490,32 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-dcsync-and-how-does-it-work" class="md-nav__link">
+  <a href="#spectreops-dcsync-backdoor" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is DCSync and How Does it Work?
+        SpectreOps' DCSync Backdoor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#grant-replication-rights" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grant replication rights
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#now-hide-your-patsy-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Now hide your patsy machine
       
     </span>
   </a>
@@ -476,34 +526,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../DCSync%20Backdoor/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DCSync Backdoor
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -711,12 +733,83 @@
 
 
 
-  <h1>DCSync</h1>
+  <h1>DCSync Backdoor</h1>
 
-<h2 id="what-is-dcsync-and-how-does-it-work">What is DCSync and How Does it Work?</h2>
-<p>DCSync is a technique for stealing the Active Directory password database by using the built-in <code>Directory Replication Service Remote Protocol</code>, which is used by Domain Controllers to replicate domain data. This allows an attacker to mimic a Domain Controller to retrieve user NTLM password hashes.</p>
-<p>The crux of the attack is requesting a Domain Controller to replicate passwords via the <code>DS-Replication-Get-Changes-All</code> extended right. This is an extended access control right within AD, which allows for the replication of secret data.</p>
-<p>To perform this attack, you must have control over an account that has the rights to perform domain replication (a user with the Replicating Directory Changes and Replicating Directory Changes All permissions set). Domain/Enterprise Admins and default domain administrators have this right by default.</p>
+<h2 id="spectreops-dcsync-backdoor">SpectreOps' DCSync Backdoor</h2>
+<p>A <strong>DCSync backdoor</strong> exploits how Active Directory handles replication. By obtaining two specific permissions on the domain root (<em>DS-Replication-GetChanges</em> and <em>DS-Replication-Get-Changes-All</em>), an account can request the same data that domain controllers share during replication. This includes password hashes for any account in the domain. Many believe full Domain or Enterprise Admin rights are required, but in reality, only those two ACEs on the domain object are necessary.</p>
+<p>In this walkthrough, a normal computer account (<code>H2R-Box-3$</code>) is converted into a long-term <strong>patsy</strong>. This machine object is granted replication rights that allow it to access KRBTGT-related data, then hidden within the directory using ACE manipulation techniques described by SpecterOps in <em>An Ace Up The Sleeve</em>. Control of the object is delegated to an unprivileged user, reducing the likelihood of detection. Once established, the patsy serves as a persistent replication pivot that blends in with normal AD activity and remains unnoticed unless domain ACLs are carefully reviewed.</p>
+<h2 id="grant-replication-rights">Grant replication rights</h2>
+<ol>
+<li>
+<p>Open <strong>Active Directory Users and Computers</strong>.</p>
+</li>
+<li>
+<p>Navigate to the domain root, for example <code>how.2.red</code>.</p>
+</li>
+<li>
+<p>Right-click the domain root and choose <strong>Properties</strong>.</p>
+<ul>
+<li>Object only</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[!Tip]<br />
+You will need to add <strong>Computers</strong> to the Object Types list.</p>
+</blockquote>
+<ol>
+<li>
+<p>Select <strong>Check Names</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Advanced</strong> → <strong>Add</strong> → <strong>Select a Principal</strong>. Enter <code>H2R-Box-3$</code>, set <strong>Type</strong> to <em>Allow</em>, and set <strong>Applies to</strong> to <em>This object</em>.</p>
+</li>
+<li>
+<p>In the permissions list, locate and select <strong>Replicating Directory Changes</strong> and <strong>Replicating Directory Changes All</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Apply</strong>.</p>
+</li>
+</ol>
+<hr />
+<h2 id="now-hide-your-patsy-machine">Now hide your patsy machine</h2>
+<ol>
+<li>
+<p>Create a new OU: right-click the domain root <code>how.2.red</code> → <strong>New</strong> → <strong>Organizational Unit</strong>. Any name will work; in this example it is <strong>Schema Extensions</strong>.</p>
+</li>
+<li>
+<p>When naming the OU, uncheck <strong>Protect container from accidental deletion</strong>.</p>
+</li>
+<li>
+<p>In the OU’s <strong>Properties</strong>, enable <strong>ShowInAdvancedViewOnly</strong>.</p>
+</li>
+<li>
+<p>Move <code>H2R-Box-3$</code> into the newly created OU.</p>
+</li>
+<li>
+<p>Right-click <code>H2R-Box-3$</code> → <strong>Security</strong> → <strong>Advanced</strong>.</p>
+</li>
+</ol>
+<blockquote>
+<p>[!Danger]<br />
+These next steps must be performed together or you risk locking yourself out.</p>
+</blockquote>
+<ol>
+<li>
+<p>Change the owner of <code>H2R-Box-3$</code> to a user account you control. Preferably use an unprivileged account you created or otherwise control and for which you have credentials.</p>
+</li>
+<li>
+<p>Add the <strong>Everyone</strong> group and set an explicit <strong>Deny</strong> for <strong>Full Control</strong>. Make sure this applies to <em>This object and all descendant objects</em>.</p>
+</li>
+<li>
+<p>Click <strong>Apply</strong>.</p>
+</li>
+<li>
+<p>Repeat the same owner change and Everyone deny on the OU: change the owner to the user account you control, add a <strong>Deny</strong> for <strong>Everyone</strong>, check <strong>List contents</strong>, and ensure it applies to <em>This object and all descendant objects</em>.</p>
+</li>
+</ol>
+<hr />
+<p>When hidden this way, the machine account will not appear during LDAP enumeration for principals other than the patsy. It will reside in an OU that only the patsy can read.</p>
 
 
 

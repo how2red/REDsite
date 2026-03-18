@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://how2.red/Windows/Active%20Directory/DCSync/">
+        <link rel="canonical" href="https://how2.red/Windows/Active%20Directory/">
       
       
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../DCSync%20Backdoor/">
+        <link rel="next" href="DCSync/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
     
     
       
-        <title>DCSync - How2Red</title>
+        <title>Active Directory - How2Red</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +51,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/style.css">
+      <link rel="stylesheet" href="../../css/style.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-dcsync-and-how-does-it-work" class="md-skip">
+        <a href="#active-directory" class="md-skip">
           Skip to content
         </a>
       
@@ -94,9 +94,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="How2Red" class="md-header__button md-logo" aria-label="How2Red" data-md-component="logo">
+    <a href="../.." title="How2Red" class="md-header__button md-logo" aria-label="How2Red" data-md-component="logo">
       
-  <img src="../../../images/How2_Logo.png" alt="logo">
+  <img src="../../images/How2_Logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              DCSync
+              Active Directory
             
           </span>
         </div>
@@ -219,9 +219,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="How2Red" class="md-nav__button md-logo" aria-label="How2Red" data-md-component="logo">
+    <a href="../.." title="How2Red" class="md-nav__button md-logo" aria-label="How2Red" data-md-component="logo">
       
-  <img src="../../../images/How2_Logo.png" alt="logo">
+  <img src="../../images/How2_Logo.png" alt="logo">
 
     </a>
     How2Red
@@ -236,7 +236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -292,7 +292,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -362,7 +362,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -380,7 +380,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+              <label class="md-nav__link md-nav__link--active" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -403,35 +403,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    DCSync
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="DCSync/" class="md-nav__link">
         
   
   
@@ -447,35 +422,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-dcsync-and-how-does-it-work" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is DCSync and How Does it Work?
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -488,7 +434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../DCSync%20Backdoor/" class="md-nav__link">
+      <a href="DCSync%20Backdoor/" class="md-nav__link">
         
   
   
@@ -524,7 +470,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Privilege%20Escalation/" class="md-nav__link">
+      <a href="../Privilege%20Escalation/" class="md-nav__link">
         
   
   
@@ -584,7 +530,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../Linux/" class="md-nav__link ">
+            <a href="../../Linux/" class="md-nav__link ">
               
   
   
@@ -655,7 +601,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../Test/" class="md-nav__link ">
+            <a href="../../Test/" class="md-nav__link ">
               
   
   
@@ -711,12 +657,13 @@
 
 
 
-  <h1>DCSync</h1>
-
-<h2 id="what-is-dcsync-and-how-does-it-work">What is DCSync and How Does it Work?</h2>
-<p>DCSync is a technique for stealing the Active Directory password database by using the built-in <code>Directory Replication Service Remote Protocol</code>, which is used by Domain Controllers to replicate domain data. This allows an attacker to mimic a Domain Controller to retrieve user NTLM password hashes.</p>
-<p>The crux of the attack is requesting a Domain Controller to replicate passwords via the <code>DS-Replication-Get-Changes-All</code> extended right. This is an extended access control right within AD, which allows for the replication of secret data.</p>
-<p>To perform this attack, you must have control over an account that has the rights to perform domain replication (a user with the Replicating Directory Changes and Replicating Directory Changes All permissions set). Domain/Enterprise Admins and default domain administrators have this right by default.</p>
+<h1 id="active-directory">Active Directory</h1>
+<p>Windows Active Directory techniques, tradecraft, and notes.</p>
+<p>Current topics in this section:</p>
+<ul>
+<li><a href="./DCSync/">DCSync</a></li>
+<li><a href="./DCSync%20Backdoor/">DCSync Backdoor</a></li>
+</ul>
 
 
 
@@ -765,10 +712,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.integrate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
