@@ -11,7 +11,7 @@ hide:
 
   <h1 class="techy-title">Welcome to How2Red</h1>
 
-  <p class="techy-tagline">&#128204; Notes from the field.</p>
+  <p class="techy-tagline">Try. Fail. Learn. Try Again. Get Better.</p>
 
 <div class="button-row">
 
