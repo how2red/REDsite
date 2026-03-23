@@ -47,7 +47,7 @@ nav:
       - Linux/index.md
   - Writeups:
       - Test/index.md
-
+          - Test/CozyHosting/index.md
 extra:
   generator: false
 
