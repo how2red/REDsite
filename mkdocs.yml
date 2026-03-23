@@ -32,7 +32,7 @@ theme:
   logo: images/How2_Logo.png
 
 extra_css:
-  - css/style.css  # 👈 add it here
+  - css/style.css  # add it here
 
 nav:
   - Home: index.md
@@ -47,7 +47,6 @@ nav:
       - Linux/index.md
   - Writeups:
       - Test/index.md
-      - CozyHosting: Test/CozyHosting/index.md
 
 extra:
   generator: false
