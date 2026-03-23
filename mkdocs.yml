@@ -1,7 +1,7 @@
 # Site Settings
 site_name: How2Red
 site_url: https://how2.red
-copyright:  Â© 2025 | @How2Red
+copyright:  © 2025 | @How2Red
 
 docs_dir: vault
 
@@ -45,9 +45,14 @@ nav:
       - Privilege Escalation: Windows/Privilege Escalation/index.md
   - Linux:
       - Linux/index.md
+      - Privilege Escalation:
+          - Linux/Privilege Escalation/index.md
+          - FACTER: Linux/Privilege Escalation/FACTER/index.md
+          - Sudo: Linux/Privilege Escalation/Sudo/index.md
   - Writeups:
       - Test/index.md
       - CozyHosting: Test/CozyHosting/index.md
+
 markdown_extensions:
   - nl2br
   - admonition
@@ -60,7 +65,3 @@ extra:
 plugins:
   - search
   - callouts
-
-
-
-
