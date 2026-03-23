@@ -1,5 +1,17 @@
 # Sudo
 
+## Sudo Enumeration
+
+Check current sudo privileges and sudo-able programs that do not require passwords:
+
+```shell
+sudo -l
+```
+
+![sudo -l output](../../../images/linux-sudo/Pasted%20image%2020231102105724.png)
+
+If any allowed programs are found, navigate to GTFOBins and click `SUDO`, or type `+sudo` followed by the program listed in the output above. Then follow the specific instructions for that binary to exploit the misconfiguration.
+
 ## Sudo Misconfiguration
 
 For this method, the user's password must be known or the user must have the `NOPASSWD` flag set in `/etc/sudoers`, for example:
@@ -14,15 +26,6 @@ user1 ALL=(ALL:ALL) NOPASSWD: ALL
 user2 ALL=(ALL:ALL) NOPASSWD: /usr/bin/vi
 ```
 
-Check current sudo privileges and sudo-able programs that do not require passwords:
-
-```shell
-sudo -l
-```
-
-![sudo -l output](../../../images/linux-sudo/Pasted%20image%2020231102105724.png)
-
-If any allowed programs are found, navigate to GTFOBins and click `SUDO`, or type `+sudo` followed by the program listed in the output above. Then follow the specific instructions for that binary to exploit the misconfiguration.
 
 ## Sudo Version Exploit
 
