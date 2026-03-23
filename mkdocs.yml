@@ -48,11 +48,18 @@ nav:
   - Writeups:
       - Test/index.md
       - CozyHosting: Test/CozyHosting/index.md
+markdown_extensions:
+  - nl2br
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 extra:
   generator: false
 
 plugins:
   - search
+  - callouts
 
 
 
