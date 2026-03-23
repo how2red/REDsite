@@ -2,9 +2,9 @@
 
 Explore Windows-specific red team tactics, techniques, and procedures.
 
-🚧 *Coming soon: PowerShell, WMI, Lateral Movement & more!*
+&#128679; *Coming soon: PowerShell, WMI, Lateral Movement & more!*
 
 Current entries:
 
-- [Active Directory](./Active%20Directory)
-- [Privilege Escalation](Privilege%20Escalation)
+- [Active Directory](./Active%20Directory/)
+- [Privilege Escalation](./Privilege%20Escalation/)
