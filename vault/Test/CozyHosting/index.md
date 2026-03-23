@@ -2,7 +2,6 @@
 
 Hack The Box machine writeup for CozyHosting.
 
-## Initial Enumeration
 
 To begin enumeration, I performed a full TCP port scan against the target using Nmap:
 
@@ -125,7 +124,6 @@ Why this works:
 - Base64 encoding helps avoid bad character restrictions
 - The payload is decoded and piped into `bash`, resulting in execution
 
-## More Enumeration
 
 I usually start with a few basic checks, like looking for valid users. A good place to start is `/etc/passwd`.
 
