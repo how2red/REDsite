@@ -6,5 +6,5 @@ Explore Windows-specific red team tactics, techniques, and procedures.
 
 Current entries:
 
-- [Active Directory](./Active%20Directory/index.md)
-- [Privilege Escalation](Privilege%20Escalation/index.md)
+- [Active Directory](./Active%20Directory)
+- [Privilege Escalation](Privilege%20Escalation)
