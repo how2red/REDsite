@@ -3,3 +3,8 @@
 Explore Windows-specific red team tactics, techniques, and procedures.
 
 🚧 *Coming soon: PowerShell, WMI, Lateral Movement & more!*
+
+Current entries:
+
+- [Active Directory](./Active%20Directory/index.md)
+- [Privilege Escalation](Privilege%20Escalation/index.md)
